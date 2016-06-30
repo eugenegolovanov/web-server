@@ -2,27 +2,16 @@ var express = require('express');
 var app = express();
 var PORT = 3000
 
-
-var middleWare = {
-	requireAuthentification: function (req, res, next) {
-		console.log('Private route hit, Nishtyak');
-		next();
-	},
-	logger: function (req, res, next) {
-		var date = new Date().toString()
-		console.log('Request: ' + req.method + ' ' + req.originalUrl + 'date: ' + date);
-		next();
-	}
-};
+var middleware = require('./middleware.js');
 
 
 // //every page requested we will go through middleware
 // app.use(middleWare.requireAuthentification);
-app.use(middleWare.logger);//add logger middleware to app
+app.use(middleware.logger);//add logger middleware to app
 
 
 
-app.get('/about', middleWare.requireAuthentification, function (req, res) {
+app.get('/about', middleware.requireAuthentification, function (req, res) {
 	res.send('Super about stuff');
 });
 
