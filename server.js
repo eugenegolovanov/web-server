@@ -18,8 +18,7 @@ var middleWare = {
 
 // //every page requested we will go through middleware
 // app.use(middleWare.requireAuthentification);
-
-app.use(middleWare.logger);
+app.use(middleWare.logger);//add logger middleware to app
 
 
 
